@@ -6,7 +6,6 @@ import pandas as pd
 df = pd.read_csv("foodDataCleaned.csv")
 testArr = []
 
-# uncomment this for testing the node class 
 for i in range(4):
     n = node.Node(
         df["product_name"][i],
@@ -17,7 +16,8 @@ for i in range(4):
         df["ingredients_text"][i]
     )
     testArr.append(n)
-
+    
+# uncomment this for testing the node class 
 # hard coded test nodes
 test1 = node.Node(
     product = "Banana Chips Sweetened (Whole)", 
@@ -60,3 +60,5 @@ assert node.isSame(test2, testArr[1]), "test 2 failed"
 assert node.isSame(test3, testArr[2]), "test 3 failed"
 assert node.isSame(test4, testArr[3]), "test 4 failed"
 print("Node tests passed")
+
+# uncomment this to test BST methods
