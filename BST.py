@@ -48,8 +48,8 @@ class BST:
                 # duplicates not allowed
                 if node.isSame(root, n): 
                     # value error because duplicates aren't allowed FOR TESTING ONLY
-                    raise ValueError
-                    # return n
+                    # raise ValueError
+                    return n
 
                 if root.left is not None:
                     return self.insertNode(n, root.left)
