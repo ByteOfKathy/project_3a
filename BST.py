@@ -1,8 +1,9 @@
 import node
 import queue
 
+
 class BST:
-    def __init__(self, root: node.Node = None, comparisonFunction = node.productComparison):
+    def __init__(self, root: node.Node = None, comparisonFunction=node.productComparison):
         self.__root = root
         self.__comparisonFunction = comparisonFunction
 
@@ -13,7 +14,7 @@ class BST:
         """
         prints tree in order
         """
-        
+
         if not root:
             return
         # queue
@@ -24,7 +25,7 @@ class BST:
             height = q.qsize()
             while height > 0:
                 temp = q.get()
-                print(temp, end = "---------------\n")
+                print(temp, end="---------------\n")
                 if temp.left:
                     q.put(temp.left)
                 if temp.right:
@@ -32,9 +33,9 @@ class BST:
                 height -= 1
 
     def insertNode(self, n: node.Node, root: node.Node) -> node.Node:
-        """ 
+        """
         inserts node n using the passed comparison function
-        
+
         returns n
         """
 
@@ -46,7 +47,7 @@ class BST:
             # if n is smaller
             if self.__comparisonFunction(n, root) is root:
                 # duplicates not allowed
-                if node.isSame(root, n): 
+                if node.isSame(root, n):
                     # value error because duplicates aren't allowed FOR TESTING ONLY
                     # raise ValueError
                     return n
@@ -65,7 +66,6 @@ class BST:
                     root.right = n
                     n.parent = root
                     return n
-    
     def searchNode(self, n, root: node.Node) -> node.Node:
         """
         search by node or string only
@@ -85,7 +85,7 @@ class BST:
             # n is smaller
             elif self.__comparisonFunction(root, n) is root and root.left is not None:
                 return self.searchNode(n, root.left)
-            else: 
+            else:
                 return None
         elif type(n) is str:
             """
@@ -101,7 +101,7 @@ class BST:
             # n is smaller
             elif n < root.getProduct() and root.left is not None:
                 return self.searchNode(n, root.left)
-            else: 
+            else:
                 return None
         elif n is None:
             return None

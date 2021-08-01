@@ -16,4 +16,8 @@ print('energy_100g: ' , energy_100g , '\n')
 print('fat_100g: ' ,fat_100g , '\n')
 print('carbohydrates_100g: ' , carbohydrates_100g , '\n')
 print('proteins_100g: ' ,proteins_100g , '\n')
+<<<<<<< HEAD
 print('ingredients_text: ' + ingredients_text + '\n')
+=======
+print('ingredients_text: ' + ingredients_text + '\n')
+>>>>>>> origin/ashley_branch
