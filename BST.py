@@ -32,7 +32,6 @@ class BST:
                     q.put(temp.right)
                 height -= 1
 
-    # TODO In theory this works, but haven't tested it past 2 recursive calls...
     def insertNode(self, n: node.Node, root: node.Node) -> node.Node:
         """
         inserts node n using the passed comparison function
@@ -49,9 +48,9 @@ class BST:
             if self.__comparisonFunction(n, root) is root:
                 # duplicates not allowed
                 if node.isSame(root, n):
-                    # value error because duplicates aren't allowed
-                    raise ValueError
-                    # return n
+                    # value error because duplicates aren't allowed FOR TESTING ONLY
+                    # raise ValueError
+                    return n
 
                 if root.left is not None:
                     return self.insertNode(n, root.left)
@@ -68,18 +67,61 @@ class BST:
                     n.parent = root
                     return n
 
-    # TODO test this
-    def searchNode(self, n, root):
+    def searchNode(self, n, root: node.Node) -> node.Node:
+        """
+        search by node or string only
+        returns Node if found, none otherwise
+        """
+        if type(n) is node.Node:
+            """
+            search by node
+            returns Node if found, None otherwise
+            """
+            # value not found in tree or value found
+            if root is None or node.isSame(n, root):
+                return root
+            # n is bigger
+            elif self.__comparisonFunction(root, n) is n and root.right is not None:
+                return self.searchNode(n, root.right)
+            # n is smaller
+            elif self.__comparisonFunction(root, n) is root and root.left is not None:
+                return self.searchNode(n, root.left)
+            else:
+                return None
+        elif type(n) is str:
+            """
+            search by product name
+            returns Node if found, None otherwise
+            """
+            # value not found in tree or value found
+            if root is None or n == root.getProduct():
+                return root
+            # n is bigger
+            elif n > root.getProduct() and root.right is not None:
+                return self.searchNode(n, root.right)
+            # n is smaller
+            elif n < root.getProduct() and root.left is not None:
+                return self.searchNode(n, root.left)
+            else:
+                return None
+        elif n is None:
+            return None
+
+    '''
+    def searchNode(self, n: str, root: node.Node) -> node.Node:
+        """
+        search by product name
+        returns Node if found, None otherwise
+        """
         # value not found in tree or value found
-        if self.__root is None or node.isSame(n, root):
+        if self.__root is None or n == root.getProduct():
             return root
         # n is bigger
-        elif self.__comparisonFunction(root, n) is n:
+        elif n > root.getProduct() and root.right is not None:
             return self.searchNode(n, root.right)
         # n is smaller
-        else:
+        elif n < root.getProduct() is root and root.left is not None:
             return self.searchNode(n, root.left)
-
-    # TODO delete function maybe
-    def deleteNode(self, n, root):
-        pass
+        else: 
+            return None
+    '''

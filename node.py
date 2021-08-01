@@ -107,6 +107,7 @@ def isSame(Node1: Node, Node2: Node) -> bool:
     """
     compares Nodes
     returns true if Nodes are at least a deep copy false otherwise
+    DOES NOT TAKE INTO ACCOUNT PARENT OR LEFT RIGHT NODES
     """
     productSame = Node1.getProduct() == Node2.getProduct()
     energySame = Node1.getEnergy() == Node2.getEnergy()
@@ -115,4 +116,4 @@ def isSame(Node1: Node, Node2: Node) -> bool:
     proteinsSame = Node1.getProteins() == Node2.getProteins()
     ingredientsSame = Node1.getIngredients() == Node2.getIngredients()
 
-    return productSame and energySame and fatSame and carbsSame and proteinsSame
+    return productSame and energySame and fatSame and carbsSame and proteinsSame and ingredientsSame

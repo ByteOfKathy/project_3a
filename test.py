@@ -112,6 +112,8 @@ bstTest.insertNode(test1BST, bstTest.getRoot())
 
 try:
     bstTest.insertNode(test3BST, bstTest.getRoot())
+    print("duplicate test failed, did you forget to uncomment the value error in BST.py?")
+    raise AssertionError
 except ValueError:
     print("duplicate test passed")
 
@@ -122,6 +124,27 @@ print("testing BST insertNode using first 3 nodes from csv sheet vs. hard coded 
 assert node.isSame(bstSoln.getRoot(), bstTest.getRoot()), "test 1 failed"
 assert node.isSame(bstSoln.getRoot().left, bstTest.getRoot().left), "test 2 failed"
 assert node.isSame(bstSoln.getRoot().right, bstTest.getRoot().right), "test 3 failed"
-# print("testing BST searchNode...")
-# print("testing BST deleteNode...")
+
+assert bstSoln.getRoot().parent == bstTest.getRoot().parent, "test 4 failed"
+assert node.isSame(bstSoln.getRoot().left.parent, bstTest.getRoot().left.parent), "test 5 failed"
+assert node.isSame(bstSoln.getRoot().right.parent, bstTest.getRoot().right.parent), "test 6 failed"
+
+print("testing BST searchNode (node)...")
+assert node.isSame(bstSoln.searchNode(bstSoln.getRoot(), bstSoln.getRoot()),
+                   bstTest.searchNode(bstTest.getRoot(), bstTest.getRoot())), "test 7 failed"
+assert node.isSame(bstSoln.searchNode(bstSoln.getRoot().left, bstSoln.getRoot()),
+                   bstTest.searchNode(bstTest.getRoot().left, bstTest.getRoot())), "test 8 failed"
+assert node.isSame(bstSoln.searchNode(bstSoln.getRoot().right, bstSoln.getRoot()),
+                   bstTest.searchNode(bstTest.getRoot().right, bstTest.getRoot())), "test 9 failed"
+assert bstTest.searchNode(test4, bstTest.getRoot()) is None, "test 10 failed"
+
+print("testing BST searchNode (string)...")
+assert node.isSame(bstSoln.searchNode(bstSoln.getRoot().getProduct(), bstSoln.getRoot()),
+                   bstTest.searchNode(bstTest.getRoot().getProduct(), bstTest.getRoot())), "test 11 failed"
+assert node.isSame(bstSoln.searchNode(bstSoln.getRoot().left.getProduct(), bstSoln.getRoot()),
+                   bstTest.searchNode(bstTest.getRoot().left.getProduct(), bstTest.getRoot())), "test 12 failed"
+assert node.isSame(bstSoln.searchNode(bstSoln.getRoot().right.getProduct(), bstSoln.getRoot()),
+                   bstTest.searchNode(bstTest.getRoot().right.getProduct(), bstTest.getRoot())), "test 13 failed"
+assert bstTest.searchNode(test4.getProduct(), bstTest.getRoot()) is None, "test 14 failed"
+
 print("BST tests passed\n")
