@@ -47,12 +47,12 @@ class Node:
 
 # lambda functions are fun...
 # just does a comparison between a and b and returns the bigger one
-comparison = lambda a, b: a if a > b else b
+comparison = lambda a, b, c, d: c if a > b else d
 
 # are all these functions redundant? probably...
 # but please don't go breaking my code and heart
 # by using a comparison function other than these in BST.py
-def productComparison(Node1, Node2) -> Node:
+def productComparison(Node1: Node, Node2: Node) -> Node:
     """
     Sort by product
 
@@ -61,9 +61,9 @@ def productComparison(Node1, Node2) -> Node:
 
     returns larger product
     """ 
-    return comparison(Node1.getProduct(), Node2.getProduct())
+    return comparison(Node1.getProduct(), Node2.getProduct(), Node1, Node2)
 
-def energyComparison(Node1, Node2) -> Node:
+def energyComparison(Node1: Node, Node2: Node) -> Node:
     """
     Sort by energy
 
@@ -72,9 +72,9 @@ def energyComparison(Node1, Node2) -> Node:
 
     returns larger energy
     """ 
-    return comparison(Node1.getEnergy(), Node2.getEnergy())
+    return comparison(Node1.getEnergy(), Node2.getEnergy(), Node1, Node2)
 
-def fatComparison(Node1, Node2) -> Node:
+def fatComparison(Node1: Node, Node2: Node) -> Node:
     """
     Sort by Fat
 
@@ -85,7 +85,7 @@ def fatComparison(Node1, Node2) -> Node:
     """ 
     return comparison(Node1.getFat(), Node2.getFat())
 
-def carbsComparison(Node1, Node2) -> Node:
+def carbsComparison(Node1: Node, Node2: Node) -> Node:
     """
     Sort by Carbs
 
@@ -94,9 +94,9 @@ def carbsComparison(Node1, Node2) -> Node:
 
     returns larger Carbs
     """ 
-    return comparison(Node1.getCarbs(), Node2.getCarbs())
+    return comparison(Node1.getCarbs(), Node2.getCarbs(), Node1, Node2)
 
-def proteinComparison(Node1, Node2) -> Node:
+def proteinComparison(Node1: Node, Node2: Node) -> Node:
     """
     Sort by proteins
 
@@ -105,9 +105,9 @@ def proteinComparison(Node1, Node2) -> Node:
 
     returns larger Proteins
     """ 
-    return comparison(Node1.getProteins(), Node2.getProteins())
+    return comparison(Node1.getProteins(), Node2.getProteins(), Node1, Node2)
 
-def isSame(Node1, Node2) -> bool:
+def isSame(Node1: Node, Node2: Node) -> bool:
     """
     compares Nodes
 

@@ -4,20 +4,7 @@ import node
 import pandas as pd
 
 df = pd.read_csv("foodDataCleaned.csv")
-testArr = []
-
-for i in range(4):
-    n = node.Node(
-        df["product_name"][i],
-        df["energy_100g"][i],
-        df["fat_100g"][i],
-        df["carbohydrates_100g"][i],
-        df["proteins_100g"][i],
-        df["ingredients_text"][i]
-    )
-    testArr.append(n)
     
-# uncomment this for testing the node class 
 # hard coded test nodes
 test1 = node.Node(
     product = "Banana Chips Sweetened (Whole)", 
@@ -55,10 +42,86 @@ test4 = node.Node(
     ingredients = "Organic polenta"
 )
 
+# uncomment this for testing the node class 
+print("- starting node tests...\n")
+
+testArr = []
+
+for i in range(4):
+    n = node.Node(
+        df["product_name"][i],
+        df["energy_100g"][i],
+        df["fat_100g"][i],
+        df["carbohydrates_100g"][i],
+        df["proteins_100g"][i],
+        df["ingredients_text"][i]
+    )
+    testArr.append(n)
+
+# assertions
+print("testing first 4 nodes from csv sheet vs. hard coded nodes...")
 assert node.isSame(test1, testArr[0]), "test 1 failed"
 assert node.isSame(test2, testArr[1]), "test 2 failed"
 assert node.isSame(test3, testArr[2]), "test 3 failed"
 assert node.isSame(test4, testArr[3]), "test 4 failed"
-print("Node tests passed")
+print("Node tests passed\n")
 
 # uncomment this to test BST methods
+print("- starting BST tests...\n")
+bstSoln = BST.BST(test3)
+
+# sorting by product name
+test3.right = test2
+test2.parent = test3
+
+test3.left = test1
+test1.parent = test3
+
+# bstSoln.printInOrder(bstSoln.getRoot())
+
+test1BST = node.Node(
+    product = "Banana Chips Sweetened (Whole)", 
+    energy = 2243.0, 
+    fat = 28.57, 
+    carbs = 64.29, 
+    proteins = 3.57, 
+    ingredients = "Bananas, vegetable oil (coconut oil, corn oil and/or palm oil) sugar, natural banana flavor."
+)
+
+test2BST = node.Node(
+    product = "Peanuts", 
+    energy = 1941.0, 
+    fat = 17.86, 
+    carbs = 60.71, 
+    proteins = 17.86, 
+    ingredients = "Peanuts, wheat flour, sugar, rice flour, tapioca starch, salt, leavening (ammonium bicarbonate, baking soda), soy sauce (water, soybeans, wheat, salt), potato starch."
+)
+
+test3BST = node.Node(
+    product = "Organic Salted Nut Mix", 
+    energy = 2540.0, 
+    fat = 57.14, 
+    carbs = 17.86, 
+    proteins = 17.86, 
+    ingredients = "Organic hazelnuts, organic cashews, organic walnuts almonds, organic sunflower oil, sea salt."
+)
+
+bstTest = BST.BST(test3BST)
+bstTest.insertNode(test2BST, bstTest.getRoot())
+bstTest.insertNode(test1BST, bstTest.getRoot())
+
+try:
+    bstTest.insertNode(test3BST, bstTest.getRoot())
+except ValueError:
+    print("duplicate test passed")
+
+# bstTest.printInOrder(bstTest.getRoot())
+
+# assertions
+print("testing BST insertNode using first 3 nodes from csv sheet vs. hard coded nodes...")
+assert node.isSame(bstSoln.getRoot(), bstTest.getRoot()), "test 1 failed"
+assert node.isSame(bstSoln.getRoot().left, bstTest.getRoot().left), "test 2 failed"
+assert node.isSame(bstSoln.getRoot().right, bstTest.getRoot().right), "test 3 failed"
+# print("testing BST searchNode...")
+# print("testing BST deleteNode...")
+print("BST tests passed\n")

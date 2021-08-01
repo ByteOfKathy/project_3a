@@ -1,55 +1,84 @@
 import node
+import queue
 
 class BST:
-    def __init__(self, root):
+    def __init__(self, root: node.Node = None, comparisonFunction = node.productComparison):
         self.__root = root
+        self.__comparisonFunction = comparisonFunction
 
     def getRoot(self) -> node.Node:
         return self.__root
 
-    def printPostOrder(self, n = None):
+    def printInOrder(self, root: node.Node):
         """
-        n: current node, default is root
+        prints tree in order
         """
+        
+        if not root:
+            return
+        # queue
+        q = queue.Queue()
+        q.put(root)
 
-    # TODO
-    def insertNode(self, n, comparisonFunction, tiebreakerFunction, root) -> node.Node:
+        while q.qsize() > 0:
+            height = q.qsize()
+            while height > 0:
+                temp = q.get()
+                print(temp, end = "---------------\n")
+                if temp.left:
+                    q.put(temp.left)
+                if temp.right:
+                    q.put(temp.right)
+                height -= 1
+
+    # TODO In theory this works, but haven't tested it past 2 recursive calls...
+    def insertNode(self, n: node.Node, root: node.Node) -> node.Node:
         """ 
-        inserts a new node
-
-        n: node
-        comparisonFunction: function to compare nodes by
+        inserts node n using the passed comparison function
         
         returns n
         """
 
+        # Assuming root that gets passed is not None
         if self.__root is None:
             self.__root = n
             return n
         else:
             # if n is smaller
-            if comparisonFunction(n, root) == root:
+            if self.__comparisonFunction(n, root) is root:
+                # duplicates not allowed
+                if node.isSame(root, n): 
+                    # value error because duplicates aren't allowed
+                    raise ValueError
+                    # return n
+
                 if root.left is not None:
-                    return insertNode(n, comparisonFunction, tiebreakerFunction, root.left)
+                    return self.insertNode(n, root.left)
                 else:
                     root.left = n
                     n.parent = root
                     return n
-            # if n is bigger, duplicates are not allowed in BST
-            else if comparisonFunction(n, root) == n:
+            # if n is bigger
+            elif self.__comparisonFunction(n, root) is n:
                 if root.right is not None:
-                    return insertNode(n, comparisonFunction, tiebreakerFunction, root.right)
+                    return self.insertNode(n, root.right)
                 else:
                     root.right = n
                     n.parent = root
                     return n
-            # TODO
-            else: 
-                # tiebreaker n is smaller
-                if tiebreakerFunction(n, root) == root:
-                
-                else if tiebreakerFunction(n, root) == n:
-
-                else:
-                    throw ValueError("tie breaker function did not break tie")
-                    
+    
+    # TODO test this
+    def searchNode(self, n, root):
+        # value not found in tree or value found
+        if self.__root is None or node.isSame(n, root):
+            return root
+        # n is bigger
+        elif self.__comparisonFunction(root, n) is n:
+            return self.searchNode(n, root.right)
+        # n is smaller
+        else:
+            return self.searchNode(n, root.left)
+    
+    # TODO delete function maybe
+    def deleteNode(self, n, root):
+        pass
