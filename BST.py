@@ -48,7 +48,7 @@ class BST:
             if self.__comparisonFunction(n, root) is root:
                 # duplicates not allowed
                 if node.isSame(root, n): 
-                    # value error because duplicates aren't allowed
+                    # value error because duplicates aren't allowed FOR TESTING ONLY
                     raise ValueError
                     # return n
 
@@ -68,17 +68,15 @@ class BST:
                     return n
     
     # TODO test this
-    def searchNode(self, n, root):
+    def searchNode(self, n: node.Node, root: node.Node):
         # value not found in tree or value found
         if self.__root is None or node.isSame(n, root):
             return root
         # n is bigger
-        elif self.__comparisonFunction(root, n) is n:
+        elif self.__comparisonFunction(root, n) is n and root.right is not None:
             return self.searchNode(n, root.right)
         # n is smaller
-        else:
+        elif self.__comparisonFunction(root, n) is root and root.left is not None:
             return self.searchNode(n, root.left)
-    
-    # TODO delete function maybe
-    def deleteNode(self, n, root):
-        pass
+        else: 
+            return None
