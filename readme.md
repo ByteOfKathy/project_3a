@@ -1,8 +1,12 @@
-# Katherine's branch (tree implementation and testing)
+#Master - stable build
+
+completed project, Master branch should be submitted for grading, not any other branch.
+
+## Katherine's branch (tree implementation and testing on feature/BST)
 
 **Commands may differ for windows, these commands were ran on a unix based system**
 
-## running the test python file
+### running the test python file
 
 1. create a new venv using `python3 -m venv ./venv/` -- this creates a virtual environment in the folder venv
 2. activate the virtual environment using the command `source ./venv/bin/activate`
