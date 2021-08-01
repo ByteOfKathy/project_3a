@@ -36,6 +36,7 @@ class hashTable:
    
     def insert(self, item):
         currentPos = self.findPos(item[0])
-        self.table[currentPos] = item[:]
-        self.size+=1
+        if np.size(self.table[currentPos])!=6:
+            self.table[currentPos] = item[:]
+            self.size+=1
 
