@@ -70,10 +70,10 @@ def main():
                         df["ingredients_text"][i]
                     )
                     tree.insertNode(n, tree.getRoot())
-
+                resultSort1 = []
                 for i in result:
                     print(tree.searchNode(i, tree.getRoot()))
-                    resultSort.insert(0, tree.searchNode(i, tree.getRoot()))
+                    resultSort1.insert(0, tree.searchNode(i, tree.getRoot()))
                 end1 = time.time()
                 print("The time it took for this process is: ")
                 print(end1 - start1)
@@ -99,23 +99,23 @@ def main():
                 sort(resultSort, 4)
 
             elif sortingMetric == "1" and dataStructureChoice == "2":
-                resultSort.sort(key=lambda x: x.getEnergy())
-                for i in resultSort:
+                resultSort1.sort(key=lambda x: x.getEnergy())
+                for i in resultSort1:
                     print(i)
 
             elif sortingMetric == "2" and dataStructureChoice == "2":
-                resultSort.sort(key=lambda x: x.getFat())
-                for i in resultSort:
+                resultSort1.sort(key=lambda x: x.getFat())
+                for i in resultSort1:
                     print(i)
 
             elif sortingMetric == "3" and dataStructureChoice == "2":
-                resultSort.sort(key=lambda x: x.getCarbs())
-                for i in resultSort:
+                resultSort1.sort(key=lambda x: x.getCarbs())
+                for i in resultSort1:
                     print(i)
 
             elif sortingMetric == "4" and dataStructureChoice == "2":
-                resultSort.sort(key=lambda x: x.getProtein())
-                for i in resultSort:
+                resultSort1.sort(key=lambda x: x.getProteins())
+                for i in resultSort1:
                     print(i)
 
             else:
