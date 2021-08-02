@@ -100,22 +100,22 @@ def main():
 
             elif sortingMetric == "1" and dataStructureChoice == "2":
                 resultSort1.sort(key=lambda x: x.getEnergy())
-                for i in resultSort:
+                for i in resultSort1:
                     print(i)
 
             elif sortingMetric == "2" and dataStructureChoice == "2":
                 resultSort1.sort(key=lambda x: x.getFat())
-                for i in resultSort:
+                for i in resultSort1:
                     print(i)
 
             elif sortingMetric == "3" and dataStructureChoice == "2":
                 resultSort1.sort(key=lambda x: x.getCarbs())
-                for i in resultSort:
+                for i in resultSort1:
                     print(i)
 
             elif sortingMetric == "4" and dataStructureChoice == "2":
-                resultSort1.sort(key=lambda x: x.getProtein())
-                for i in resultSort:
+                resultSort1.sort(key=lambda x: x.getProteins())
+                for i in resultSort1:
                     print(i)
 
             else:
