@@ -51,11 +51,12 @@ def main():
             result = search(item, productNames)
 
             if dataStructureChoice == "1":
-                start = time.time()
+
                 t = hashTable()
 
                 for i in b:
                     t.insert(i)
+                start = time.time()
                 resultSort = []
                 #prints the products that match in the hashTable
                 for i in result:
@@ -66,7 +67,7 @@ def main():
                 print(end-start)
 
             elif dataStructureChoice == "2":
-                start1 = time.time()
+
                 df = pd.read_csv("food_data_no_duplicates.csv")
 
                 tree = BST()
@@ -80,6 +81,7 @@ def main():
                         df["ingredients_text"][i]
                     )
                     tree.insertNode(n, tree.getRoot())
+                start1 = time.time()
                 resultSort1 = []
                 for i in result:
                     print(tree.searchNode(i, tree.getRoot()))
@@ -136,5 +138,3 @@ def main():
 
 
 main()
-
-
