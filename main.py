@@ -5,13 +5,23 @@ from operator import attrgetter
 from hashTable import *
 from BST import *
 
+def formatItem(item):
+      return "name: {}\nenergy: {}\nfat: {}\ncarbohydrates: {}\nproteins: {}\ningredients: {}\n".format(
+            item[0],
+            item[1],
+            item[2],
+            item[3],
+            item[4],
+            item[5]
+        )
+
 def search(userInput, productNames):
     return (productNames[productNames.str.contains(userInput)].values)
 
 def sort(array, metric):
     array.sort(key=lambda x: x[metric])
     for i in array:
-        print (i)
+        print (formatItem(i))
 
 
 def main():
@@ -41,22 +51,23 @@ def main():
             result = search(item, productNames)
 
             if dataStructureChoice == "1":
-                start = time.time()
+
                 t = hashTable()
 
                 for i in b:
                     t.insert(i)
+                start = time.time()
                 resultSort = []
                 #prints the products that match in the hashTable
                 for i in result:
-                    print(t.getItem(i))
+                    print(formatItem(t.getItem(i)))
                     resultSort.insert(0, t.getItem(i))
                 end = time.time()
                 print ("The time it took for this process is: ")
                 print(end-start)
 
             elif dataStructureChoice == "2":
-                start1 = time.time()
+
                 df = pd.read_csv("food_data_no_duplicates.csv")
 
                 tree = BST()
@@ -70,6 +81,7 @@ def main():
                         df["ingredients_text"][i]
                     )
                     tree.insertNode(n, tree.getRoot())
+                start1 = time.time()
                 resultSort1 = []
                 for i in result:
                     print(tree.searchNode(i, tree.getRoot()))
@@ -126,5 +138,3 @@ def main():
 
 
 main()
-
-
