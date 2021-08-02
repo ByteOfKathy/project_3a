@@ -17,7 +17,7 @@ def sort(array, metric):
 def main():
     foodData = pd.read_csv('food_data_no_duplicates.csv')
     b = foodData.values
-    resultSort = []
+
 
     dataStructureChoice = 0
     while dataStructureChoice != 3:
@@ -46,7 +46,7 @@ def main():
 
                 for i in b:
                     t.insert(i)
-
+                resultSort = []
                 #prints the products that match in the hashTable
                 for i in result:
                     print(t.getItem(i))
